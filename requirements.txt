@@ -1,0 +1,7 @@
+# dbt Core and Snowflake adapter
+dbt-core>=1.8.0
+dbt-snowflake>=1.8.0
+
+# Additional useful packages for data warehouse development
+sqlfluff>=3.0.0
+pre-commit>=3.0.0
