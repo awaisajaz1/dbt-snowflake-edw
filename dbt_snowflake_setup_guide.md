@@ -273,6 +273,37 @@ dbt docs serve
 
 ## Step 10: Best Practices
 
+### dbt Power User Extension (Recommended)
+
+Install the dbt Power User extension for VS Code to enhance your dbt development experience:
+
+**Installation:**
+1. Open VS Code
+2. Go to Extensions (Cmd+Shift+X)
+3. Search for "dbt Power User"
+4. Install the extension by Altimate AI
+
+**Features:**
+- **SQL compilation and preview** - See compiled SQL without running models
+- **Lineage visualization** - Interactive dependency graphs
+- **Model documentation** - Inline docs and column descriptions
+- **Auto-completion** - dbt functions, macros, and model references
+- **Query execution** - Run SQL directly from VS Code
+- **dbt commands** - Integrated dbt run, test, and debug
+- **Column-level lineage** - Track data flow at column level
+
+**Setup:**
+1. Open your dbt project in VS Code
+2. The extension will auto-detect your dbt project
+3. Configure your profiles.yml path if needed
+4. Use Cmd+Shift+P and search "dbt" to see available commands
+
+**Key Commands:**
+- `dbt: Compile Current Model` - Compile the current SQL file
+- `dbt: Run Current Model` - Run the current model
+- `dbt: Show Lineage` - View model dependencies
+- `dbt: Generate Documentation` - Create and serve docs
+
 ### Environment Variables
 Create a `.env` file for sensitive information:
 
