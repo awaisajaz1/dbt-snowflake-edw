@@ -1,0 +1,31 @@
+dbtsnow:
+  outputs:
+    dev:
+      account: your_account_identifier  # e.g., ABC123-XY45678 (without .snowflakecomputing.com)
+      database: DBT_DEMO
+      password: your_password
+      role: ACCOUNTADMIN  # or your assigned role
+      schema: bronze
+      threads: 1
+      type: snowflake
+      user: your_username
+      warehouse: COMPUTE_WH  # or your warehouse name
+    
+    prod:
+      account: your_account_identifier
+      database: DBT_DEMO
+      password: your_password
+      role: ACCOUNTADMIN
+      schema: gold
+      threads: 4
+      type: snowflake
+      user: your_username
+      warehouse: COMPUTE_WH
+  target: dev
+
+# INSTRUCTIONS:
+# 1. Copy this file to ~/.dbt/profiles.yml
+# 2. Replace all "your_*" placeholders with your actual Snowflake credentials
+# 3. Account identifier format: ABC123-XY45678 (NOT the full URL)
+# 4. Make sure the database, warehouse, and role exist in your Snowflake account
+# 5. Test connection with: dbt debug
