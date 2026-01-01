@@ -156,6 +156,58 @@ dbt test  # Run all tests
 dbt test --select staging  # Test specific layer
 ```
 
+## ⚙️ Configuration Precedence
+
+dbt follows a specific order of precedence for configurations. Understanding this hierarchy is crucial for managing your project effectively:
+
+### 🏆 Precedence Order (Highest to Lowest)
+
+```
+1. properties.yml (schema.yml) files    [HIGHEST PRIORITY]
+2. Model-level {{ config() }} blocks
+3. dbt_project.yml configurations       [LOWEST PRIORITY]
+```
+
+### 📋 Examples
+
+**1. properties.yml / schema.yml (Highest Priority)**
+```yaml
+# models/staging/properties.yml
+models:
+  - name: stg_customers
+    config:
+      materialized: table
+      schema: staging_override
+```
+
+**2. Model-level config (Medium Priority)**
+```sql
+-- models/staging/stg_customers.sql
+{{ config(
+    materialized='view',
+    schema='staging'
+) }}
+
+SELECT * FROM {{ source('raw', 'customers') }}
+```
+
+**3. dbt_project.yml (Lowest Priority)**
+```yaml
+# dbt_project.yml
+models:
+  dbtsnow:
+    staging:
+      +materialized: view
+      +schema: staging
+```
+
+### 🎯 Best Practices
+
+- **Use dbt_project.yml** for project-wide defaults
+- **Use model-level config** for model-specific overrides
+- **Use properties.yml** for documentation and the highest-priority configurations
+- **Keep it consistent** - choose one approach per configuration type when possible
+
 ## 📚 Learning Resources
 
 - 📖 [Complete Setup Guide](dbt_snowflake_setup_guide.md)
