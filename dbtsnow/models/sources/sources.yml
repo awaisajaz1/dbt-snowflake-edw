@@ -1,0 +1,10 @@
+sources:
+    - name: RAW
+      database:  {{ env_var('DBT_SNOWFLAKE_DATABASE') }}
+      schema:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}
+      tables:
+        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.ORDERS
+        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.CUSTOMERS
+        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.PRODUCTS
+        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.SUPPLIERS
+        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.ORDER_ITEMS
