@@ -1,0 +1,95 @@
+version: 2
+
+models:
+  - name: silver_customers
+    description: "Cleaned and enriched customer data with data quality flags"
+    config:
+      materialized: incremental
+      unique_key: customer_id
+      schema: silver
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: "Customer's full name (first + last)"
+        tests:
+          - not_null
+      - name: email
+        description: "Customer email address"
+        tests:
+          - unique
+          - not_null
+      - name: is_valid_email
+        description: "Flag indicating if email format is valid"
+      - name: is_valid_status
+        description: "Flag indicating if customer status is valid"
+      - name: customer_status
+        description: "Current customer status"
+        tests:
+          - accepted_values:
+              values: ['active', 'inactive', 'suspended']
+
+  - name: silver_products
+    description: "Cleaned and enriched product data with calculated metrics"
+    config:
+      materialized: incremental
+      unique_key: product_id
+      schema: silver
+    columns:
+      - name: product_id
+        description: "Unique product identifier"
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "Product name"
+        tests:
+          - not_null
+      - name: profit_margin
+        description: "Calculated profit margin (price - cost)"
+      - name: profit_margin_percentage
+        description: "Profit margin as percentage"
+      - name: price_category
+        description: "Price category (Budget/Mid-Range/Premium)"
+        tests:
+          - accepted_values:
+              values: ['Budget', 'Mid-Range', 'Premium', 'Unknown']
+      - name: is_valid_pricing
+        description: "Flag indicating if pricing data is valid"
+      - name: is_valid_stock
+        description: "Flag indicating if stock quantity is valid"
+
+  - name: silver_suppliers
+    description: "Cleaned and enriched supplier data with rating categories"
+    config:
+      materialized: incremental
+      unique_key: supplier_id
+      schema: silver
+    columns:
+      - name: supplier_id
+        description: "Unique supplier identifier"
+        tests:
+          - unique
+          - not_null
+      - name: supplier_name
+        description: "Supplier company name"
+        tests:
+          - not_null
+      - name: supplier_rating
+        description: "Supplier rating (0-5 scale)"
+        tests:
+          - not_null
+      - name: rating_category
+        description: "Rating category based on score"
+        tests:
+          - accepted_values:
+              values: ['Excellent', 'Good', 'Average', 'Below Average', 'Poor']
+      - name: is_valid_email
+        description: "Flag indicating if email format is valid"
+      - name: is_valid_rating
+        description: "Flag indicating if rating is within valid range"
+      - name: full_address
+        description: "Complete formatted address"
