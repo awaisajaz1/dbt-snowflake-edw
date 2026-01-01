@@ -9,7 +9,7 @@ select
 from
     {{ ref('silver_customers') }}
 
-
+-- another way of doing the interation
 -- select
 --    {{ cols | join(', ') }}
 --from
