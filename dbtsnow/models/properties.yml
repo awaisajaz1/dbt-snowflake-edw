@@ -1,8 +1,0 @@
-models:
-    - name: bronze
-      config:
-        materialized: table
-        tags:
-          - bronze
-          - raw
-        enabled: true

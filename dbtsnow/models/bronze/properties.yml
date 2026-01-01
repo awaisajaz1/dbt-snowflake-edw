@@ -1,0 +1,16 @@
+models:
+    - name: bronze_orders
+      config:
+        materialized: table
+    - name: bronze_order_items
+      config:
+        materialized: table
+    - name: bronze_customers
+      config:
+        materialized: table
+    - name: bronze_products
+      config:
+        materialized: table
+    - name: bronze_suppliers
+      config:
+        materialized: table

@@ -1,10 +1,73 @@
+version: 2
+
 sources:
-    - name: RAW
-      database:  {{ env_var('DBT_SNOWFLAKE_DATABASE') }}
-      schema:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}
-      tables:
-        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.ORDERS
-        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.CUSTOMERS
-        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.PRODUCTS
-        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.SUPPLIERS
-        - name:  {{ env_var('DBT_SNOWFLAKE_SCHEMA') }}.ORDER_ITEMS
+  - name: raw
+    description: Raw data from source systems
+    database: DBT_DEMO
+    schema: raw
+    tables:
+      - name: orders
+        description: Order transactions and details
+        columns:
+          - name: order_id
+            description: Unique order identifier
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: Customer who placed the order
+            tests:
+              - not_null
+      
+      - name: customers
+        description: Customer information and profiles
+        columns:
+          - name: customer_id
+            description: Unique customer identifier
+            tests:
+              - unique
+              - not_null
+          - name: email
+            description: Customer email address
+            tests:
+              - unique
+              - not_null
+      
+      - name: products
+        description: Product catalog with pricing and details
+        columns:
+          - name: product_id
+            description: Unique product identifier
+            tests:
+              - unique
+              - not_null
+          - name: product_name
+            description: Product name
+            tests:
+              - not_null
+      
+      - name: suppliers
+        description: Supplier information and ratings
+        columns:
+          - name: supplier_id
+            description: Unique supplier identifier
+            tests:
+              - unique
+              - not_null
+      
+      - name: order_items
+        description: Individual items within orders
+        columns:
+          - name: order_item_id
+            description: Unique order item identifier
+            tests:
+              - unique
+              - not_null
+          - name: order_id
+            description: Reference to orders table
+            tests:
+              - not_null
+          - name: product_id
+            description: Reference to products table
+            tests:
+              - not_null
