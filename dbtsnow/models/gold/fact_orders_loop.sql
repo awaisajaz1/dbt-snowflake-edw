@@ -1,4 +1,6 @@
-    {% set configs = 
+
+
+{% set configs = 
     [
         {
             "table": "silver.silver_orders",
@@ -7,7 +9,7 @@
         },
         {
             "table": "silver.silver_customers",
-            "columns": "silver_customers.customer_id, silver_customers.first_name, silver_customers.email, silver_customers.phone, silver_customers.customer_status",
+            "columns": "silver_customers.customer_id as cust_id, silver_customers.first_name, silver_customers.email, silver_customers.phone, silver_customers.customer_status",
             "alias": "silver_customers",
             "join_condition": "silver_orders.customer_id = silver_customers.customer_id"
         }
