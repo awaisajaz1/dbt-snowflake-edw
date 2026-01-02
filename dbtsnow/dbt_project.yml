@@ -37,6 +37,10 @@ models:
       +schema: bronze
       +on_schema_change: fail
     silver:
-      +materialized: incremental
+      +materialized: table
       +schema: silver
+      +on_schema_change: fail
+    gold:
+      +materialized: table
+      +schema: gold
       +on_schema_change: fail
