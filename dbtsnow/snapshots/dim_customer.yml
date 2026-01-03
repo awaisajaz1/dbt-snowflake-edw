@@ -1,0 +1,10 @@
+snapshots:
+    - name: dim_customers
+      relation: ref('ephemeral_customers')
+      config:
+        schema: gold
+        database: DBT_DEMO
+        unique_key: customer_id
+        strategy: timestamp
+        updated_at: updated_at
+        dbt_valid_to_current: null

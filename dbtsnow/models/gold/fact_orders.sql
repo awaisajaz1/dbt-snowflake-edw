@@ -6,10 +6,10 @@
             "alias": "silver_orders"
         },
         {
-            "table": "silver.silver_customers",
-            "columns": "silver_customers.customer_id as cust_id, silver_customers.first_name, silver_customers.email, silver_customers.phone, silver_customers.customer_status",
-            "alias": "silver_customers",
-            "join_condition": "silver_orders.customer_id = silver_customers.customer_id"
+            "table": "gold.dim_customers",
+            "columns": "dim_customers.customer_id as customer_dk, dim_customers.dbt_scd_id as customer_sk",
+            "alias": "dim_customers",
+            "join_condition": "silver_orders.customer_id = dim_customers.customer_id"
         },
         {
             "table": "silver.silver_suppliers",

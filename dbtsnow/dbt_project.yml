@@ -44,3 +44,5 @@ models:
       +materialized: table
       +schema: gold
       +on_schema_change: fail
+      ephemeral:
+        +materialized: ephemeral
