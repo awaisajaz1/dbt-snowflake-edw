@@ -10,7 +10,7 @@
             "columns": "dim_customers.customer_id as customer_dk, dim_customers.dbt_scd_id as customer_sk",
             "alias": "dim_customers",
             "join_condition": "silver_orders.customer_id = dim_customers.customer_id"
-        },
+         },
         {
             "table": "silver.silver_suppliers",
             "columns": "silver_suppliers.supplier_id, silver_suppliers.supplier_name, silver_suppliers.email, silver_suppliers.phone, silver_suppliers.full_address",
